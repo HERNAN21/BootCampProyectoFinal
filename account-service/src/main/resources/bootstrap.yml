@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: account-service
+  cloud:
+    config:
+      label: main
+      uri: ${CONFIG_SERVER_URI:http://localhost:8081}
+      username: ${SECURITY_USERNAME:bootcampRoot}
+      password: ${SECURITY_PASSWORD:bootcampRoot123}
+
+# Swagger openapi.docs custom path
+springdoc:
+  api-docs:
+    path: account/docs
+    enabled: true
+  swagger-ui:
+    path: account/docs/ui
+    enabled: true
+  show-actuator: true
+
+# Tomcat Server Port
+server:
+  port: 3000

@@ -1,0 +1,39 @@
+package com.nttdata.cards;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.core.env.Environment;
+
+import java.util.logging.Logger;
+
+
+@SpringBootApplication
+public class CardsServiceApplication implements CommandLineRunner {
+
+	private static final Logger logger = Logger.getLogger(CardsServiceApplication.class.toString());
+
+	@Autowired
+	private Environment env;
+
+	private static String apiGateway;
+
+	@Override
+	public void run(String... args) throws Exception {
+		
+		logger.info("Java version: " + env.getProperty("java.version"));
+		logger.info("Application name: " + env.getProperty("spring.application.name"));
+		logger.info("Properties file upload status: " + env.getProperty("my-own-app.properties.status"));
+		logger.info("Swagger: http://localhost:" + env.getProperty("server.port") +"/" + env.getProperty("springdoc.swagger-ui.path"));
+	}
+
+	public static String getApiGateway() { return apiGateway; }
+
+	public static void main(String[] args) {
+		SpringApplication.run(CardsServiceApplication.class, args);
+	}
+
+}
